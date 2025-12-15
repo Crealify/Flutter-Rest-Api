@@ -17,7 +17,7 @@ class _PostRegisterState extends State<PostRegister> {
   TextEditingController passwordController = TextEditingController();
 
   Future<void> registerUser(String email, String password) async {
-    Uri url = Uri.parse("https://reqres.in/api/register");
+    Uri url = Uri.parse("https://reqres.in/api/login");
     var data = {"email": email, "password": password};
 
     try {
@@ -28,15 +28,15 @@ class _PostRegisterState extends State<PostRegister> {
           "Accept": "application/json",
           "x-api-key": 'reqres_c5639f34cd2648b5999d0cd3ca27964b', // 👈 required
         },
-        body: jsonEncode({"email": email, "password": password}),
+        body: jsonEncode(data),
       );
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
         print(jsonData);
-        print("Register Successfully");
+        print("Login Successfully");
       } else {
         var error = jsonDecode(response.body);
-        print("Unable to Register: ${error['error']}");
+        print("Unable to login: ${error['error']}");
       }
     } catch (e) {
       print("Error: $e");
@@ -46,7 +46,7 @@ class _PostRegisterState extends State<PostRegister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Register Post Api"), centerTitle: true),
+      appBar: AppBar(title: const Text("Login Post Api"), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -79,7 +79,7 @@ class _PostRegisterState extends State<PostRegister> {
                 ),
                 child: Center(
                   child: Text(
-                    "Register",
+                    "Login",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
