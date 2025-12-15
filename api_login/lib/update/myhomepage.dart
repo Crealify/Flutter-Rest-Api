@@ -3,6 +3,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:api_login/update/service.dart';
+import 'package:api_login/update/update_display.dart';
 import 'package:api_login/update/update_model.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,20 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                       jobController.text.toString(),
                     )
                     .then((value) {
-                      updateData = value!;
+                      setState(() {
+                        updateData = value!;
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UpdateDisplay(
+                              updateModel: updateData,
+                              name: updateData.name.toString(),
+                              job: updateData.job.toString(),
+                              updatedAT: updateData.updatedAt.toString(),
+                            ),
+                          ),
+                        );
+                      });
                     });
               },
 
