@@ -1,4 +1,4 @@
-import 'package:api_login/Post/post_register.dart';
+import 'package:api_login/update/myhomepage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,8 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: const Color.fromARGB(255, 79, 76, 83))),
-      home: const PostRegister(),
+      theme: ThemeData(
+        colorScheme: .fromSeed(
+          seedColor: const Color.fromARGB(255, 79, 76, 83),
+        ),
+      ),
+      home: const MyHomeScreen(),
     );
   }
 }
