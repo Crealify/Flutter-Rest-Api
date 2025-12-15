@@ -1,4 +1,4 @@
-import 'package:api_login/update/myhomepage.dart';
+import 'package:api_login/getMethodWithoutModel/without_model.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 79, 76, 83),
         ),
       ),
-      home: const MyHomeScreen(),
+      home: const GetMethodWithoutModel(),
     );
   }
 }
