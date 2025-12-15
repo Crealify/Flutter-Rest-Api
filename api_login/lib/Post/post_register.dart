@@ -15,21 +15,31 @@ class PostRegister extends StatefulWidget {
 class _PostRegisterState extends State<PostRegister> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  registerUser(String email, String password) async {
+
+  Future<void> registerUser(String email, String password) async {
     Uri url = Uri.parse("https://reqres.in/api/register");
     var data = {"email": email, "password": password};
 
     try {
-      var response = await http.post(url, body: data);
+      var response = await http.post(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "x-api-key": 'reqres_c5639f34cd2648b5999d0cd3ca27964b', // 👈 required
+        },
+        body: jsonEncode({"email": email, "password": password}),
+      );
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
         print(jsonData);
+        print("Register Successfully");
       } else {
         var error = jsonDecode(response.body);
         print("Unable to Register: ${error['error']}");
       }
     } catch (e) {
-      print("Errpr: $e");
+      print("Error: $e");
     }
   }
 
