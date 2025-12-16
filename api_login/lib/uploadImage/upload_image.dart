@@ -13,6 +13,8 @@ class UploadImage extends StatefulWidget {
 
 class _UploadImageState extends State<UploadImage> {
   @override
+  String isImageUploade = '';
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -33,7 +35,9 @@ class _UploadImageState extends State<UploadImage> {
                   UploadApiImage()
                       .uploadImage(bytes, image.name)
                       .then((value) {
-                        setState(() {});
+                        setState(() {
+                          isImageUploade = value['location'].toString();
+                        });
                         print(
                           "Upload Sucessfully with link ${value.toString()}",
                         );
