@@ -12,7 +12,6 @@ class UploadImage extends StatefulWidget {
 }
 
 class _UploadImageState extends State<UploadImage> {
-  @override
   String isImageUpload = '';
   bool isLoading = false;
   @override
