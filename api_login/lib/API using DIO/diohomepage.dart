@@ -60,9 +60,21 @@ class _DioHomePageState extends State<DioHomePage> {
                   child: Column(
                     children: [
                       Image.network(
-                        cart!.carts![index].products![0].thumbnail ?? "",
+                        cart!.carts![index].products![1].thumbnail ?? "",
                         height: 140,
                         width: 200,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 4,
+                          right: 10,
+                          left: 10,
+                        ),
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          cart!.carts![index].products![1].title ?? "",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ],
                   ),
@@ -72,5 +84,6 @@ class _DioHomePageState extends State<DioHomePage> {
     );
   }
 }
+
 // the reason behind type "int" is not a subtype of type 'double?' error is
 // some api items value is oth the format int and double but it defined as one value
