@@ -10,6 +10,17 @@ class HomePageGetx extends StatefulWidget {
 class _HomePageGetxState extends State<HomePageGetx> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+
+        leading: Icon(Icons.menu),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+        ],
+      ),
+      body: Column(children: [],),
+    );
   }
 }
