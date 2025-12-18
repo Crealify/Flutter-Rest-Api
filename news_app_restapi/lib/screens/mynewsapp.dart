@@ -44,7 +44,7 @@ class _MyNewsAppScreenState extends State<MyNewsAppScreen> {
         centerTitle: true,
       ),
       body: isLoading
-          ? SizedBox(child: Center(child: CircularProgressIndicator()))
+          ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Column(
                 children: [
@@ -52,6 +52,37 @@ class _MyNewsAppScreenState extends State<MyNewsAppScreen> {
                   Container(
                     height: 55,
                     padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: ListView.builder(
+                      itemCount: categories.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        final categoysname = categories[index];
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(18),
+                                color: Colors.blueAccent,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  categoysname.categoryName!,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
 
                   // for home screen news
@@ -87,30 +118,6 @@ class _MyNewsAppScreenState extends State<MyNewsAppScreen> {
                               SizedBox(height: 10),
                               Divider(thickness: 2),
                             ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  ListView.builder(
-                    itemCount: articles.length,
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      final articles = categories[index];
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          // margin: EdgeInsets.center
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(
-                            child: Text(
-                              articles.categoryName!,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
                           ),
                         ),
                       );
