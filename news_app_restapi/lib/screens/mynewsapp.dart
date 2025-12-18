@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_restapi/model/category_data.dart';
 import 'package:news_app_restapi/model/news_model.dart';
+import 'package:news_app_restapi/screens/caetgory_news.dart';
 import 'package:news_app_restapi/service/services.dart';
 
 class MyNewsAppScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _MyNewsAppScreenState extends State<MyNewsAppScreen> {
   List<CategoryNewsModel> categories = [];
   bool isLoading = true;
 
-  getNews() async {
+  Future<void> getNews() async {
     NewsApi newsApi = NewsApi();
     await newsApi.getNews();
 
@@ -23,7 +24,6 @@ class _MyNewsAppScreenState extends State<MyNewsAppScreen> {
       // ✅ FIX
       isLoading = false;
       articles = newsApi.dataStore;
-      categories = getCategories();
     });
   }
 
@@ -31,6 +31,7 @@ class _MyNewsAppScreenState extends State<MyNewsAppScreen> {
   void initState() {
     super.initState();
     getNews();
+    categories = getCategories();
   }
 
   @override
@@ -59,7 +60,16 @@ class _MyNewsAppScreenState extends State<MyNewsAppScreen> {
                       itemBuilder: (context, index) {
                         final categoysname = categories[index];
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CategoryNewsPage(
+                                  category: categoysname.categoryName!,
+                                ),
+                              ),
+                            );
+                          },
                           child: Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Container(

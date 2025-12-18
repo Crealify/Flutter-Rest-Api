@@ -2,6 +2,9 @@ class CategoryNewsModel {
   String? categoryName;
 
   CategoryNewsModel({this.categoryName});
+
+
+
 }
 
 class NewsModel {

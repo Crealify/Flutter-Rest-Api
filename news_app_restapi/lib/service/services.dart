@@ -7,12 +7,8 @@ class NewsApi {
   List<NewsModel> dataStore = [];
   Future<void> getNews() async {
     dataStore.clear(); // avoid duplicate data
-
-    // Uri url = Uri.parse(
-    //   "https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=1638c5e8c3534c6a9f22cc757b9264bc",
-    // );
     Uri url = Uri.parse(
-      "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1638c5e8c3534c6a9f22cc757b9264bc",
+      "https://newsapi.org/v2/top-headlines?country=us&apiKey=1638c5e8c3534c6a9f22cc757b9264bc",
     );
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
