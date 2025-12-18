@@ -1,3 +1,4 @@
+
 import 'package:dictionary_app/screen/dictionary_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,4 +18,6 @@ class MyApp extends StatelessWidget {
       home: const DictionaryScreen(),
     );
   }
+
+  
 }

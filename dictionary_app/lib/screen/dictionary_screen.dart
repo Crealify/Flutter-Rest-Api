@@ -51,12 +51,13 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                 searchContain(value);
               },
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 15  ),
             if (isLoading)
               const LinearProgressIndicator()
             else if (myDictionaryModel != null)
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       myDictionaryModel!.word,
@@ -67,15 +68,20 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                       ),
                     ),
                     Text(
-                      myDictionaryModel!.phonetics.isEmpty
+                      myDictionaryModel!.phonetics.isNotEmpty
                           ? myDictionaryModel!.phonetics[0].text ?? ""
                           : "",
                     ),
-                    const SizedBox(height: 15),
+                    Divider(height: 4, thickness: 2),
+                    const SizedBox(height: 2),
                     Expanded(
                       child: ListView.builder(
                         itemCount: myDictionaryModel!.meanings.length,
-                        itemBuilder: (context, index) {},
+                        itemBuilder: (context, index) {
+                          return showMeaning(
+                            myDictionaryModel!.meanings[index],
+                          );
+                        },
                       ),
                     ),
                   ],
@@ -88,5 +94,69 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
       ),
     );
   }
-  
+
+  showMeaning(Meaning meaning) {
+    String wordDefination = "";
+    for (var element in meaning.definitions) {
+      int index = meaning.definitions.indexOf(element);
+      wordDefination += "\n${index + 1}.${element.definition}\n";
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Material(
+        elevation: 2,
+        borderRadius: BorderRadius.circular(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              meaning.partOfSpeech,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+                color: Colors.blue,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Defination: ",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black38,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(wordDefination, style: TextStyle(fontSize: 16, height: 1)),
+            wordRelation("Synonyms", meaning.synonyms),
+            wordRelation("Antonyms", meaning.antonyms),
+          ],
+        ),
+      ),
+    );
+  }
+
+  wordRelation(String title, List<String>? setList) {
+    if (setList?.isNotEmpty ?? false) {
+      return Column(
+        children: [
+          Text(
+            "$title: ",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+          Text(
+            setList!
+                .toList()
+                .toString()
+                .replaceAll("{", "")
+                .replaceAll("}", ""),
+            style: TextStyle(fontSize: 18),
+          ),
+          SizedBox(height: 10),
+        ],
+      );
+    } else {
+      return SizedBox();
+    }
+  }
 }
