@@ -21,3 +21,4 @@ class NewsModel {
     this.content,
   });
 }
+
