@@ -1,4 +1,4 @@
-import 'package:api_login/API%20using%20DIO/diohomepage.dart';
+import 'package:api_login/ecommerceUsing_Getx/Screen/homescreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 79, 76, 83),
         ),
       ),
-      home: const DioHomePage(),
+      home: const HomePageGetx(),
     );
   }
 }
