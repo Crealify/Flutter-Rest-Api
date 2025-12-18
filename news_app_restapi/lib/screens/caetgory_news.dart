@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:news_app_restapi/model/news_model.dart';
+import 'package:news_app_restapi/screens/news_details.dart';
 import 'package:news_app_restapi/service/services.dart';
 
 // ignore: must_be_immutable
@@ -54,7 +55,14 @@ class _CategoryNewsPageState extends State<CategoryNewsPage> {
                 itemBuilder: (context, index) {
                   final article = articles[index];
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NewsDetails(newsModel: article),
+                        ),
+                      );
+                    },
                     child: Container(
                       margin: EdgeInsets.all(10),
                       decoration: BoxDecoration(

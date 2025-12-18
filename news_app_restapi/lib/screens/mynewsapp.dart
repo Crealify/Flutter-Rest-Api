@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app_restapi/model/category_data.dart';
 import 'package:news_app_restapi/model/news_model.dart';
 import 'package:news_app_restapi/screens/caetgory_news.dart';
+import 'package:news_app_restapi/screens/news_details.dart';
 import 'package:news_app_restapi/service/services.dart';
 
 class MyNewsAppScreen extends StatefulWidget {
@@ -103,7 +104,15 @@ class _MyNewsAppScreenState extends State<MyNewsAppScreen> {
                     itemBuilder: (context, index) {
                       final article = articles[index];
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  NewsDetails(newsModel: article),
+                            ),
+                          );
+                        },
                         child: Container(
                           margin: EdgeInsets.all(10),
                           decoration: BoxDecoration(
