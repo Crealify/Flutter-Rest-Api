@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../model/model.dart';
 
 class RemoteService {
-  Future<List<Product>?> fetchProduct() async {
+  static Future<List<Product>?> fetchProduct() async {
     var client = http.Client();
 
     var uri = Uri.parse("https://fakestoreapi.com/products");
