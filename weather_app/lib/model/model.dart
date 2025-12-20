@@ -23,26 +23,34 @@ class WeatherData {
     required this.seaLevel,
     required this.weather,
   });
-
   factory WeatherData.fromJson(Map<String, dynamic> json) {
     return WeatherData(
       name: json['name'],
       temperature: Temperature.fromJson(json['main']),
       humidity: json['main']['humidity'],
       wind: Wind.fromJson(json['wind']),
-      maxTemperature: json['main']['temp_max'] - 273.15, //kelvin to Celsius
-      minTemperature: json['main']['temp_min'] - 273.15, //kelvin to Celsius
+      maxTemperature: (json['main']['temp_max'] as num).toDouble() - 273.15,
+      minTemperature: (json['main']['temp_min'] as num).toDouble() - 273.15,
       pressure: json['main']['pressure'],
-      seaLevel: json['main']['seaLevel'],
-      weather: List<WeatherInfo>.from(
-        (json['weather'].map((weather) => WeatherInfo.fromJson(weather))),
-      ),
+      seaLevel: json['main']['sea_level'] ?? 0,
+      weather: (json['weather'] as List)
+          .map((e) => WeatherInfo.fromJson(e))
+          .toList(),
     );
   }
 }
 
+// class WeatherInfo {
+//   final String main;
+//   WeatherInfo({required this.main});
+
+//   factory WeatherInfo.fromJson(Map<String, dynamic> json) {
+//     return WeatherInfo(main: json['main']);
+//   }
+// }
 class WeatherInfo {
   final String main;
+
   WeatherInfo({required this.main});
 
   factory WeatherInfo.fromJson(Map<String, dynamic> json) {
@@ -50,12 +58,21 @@ class WeatherInfo {
   }
 }
 
+// class Temperature {
+//   final double current;
+
+//   Temperature({required this.current});
+//   factory Temperature.fromJson(dynamic json) {
+//     return Temperature(current: (json - 273.15)); // Kelvin to Celsius
+//   }
+// }
 class Temperature {
   final double current;
 
   Temperature({required this.current});
-  factory Temperature.fromJson(dynamic json) {
-    return Temperature(current: (json - 273.15)); // Kelvin to Celsius
+
+  factory Temperature.fromJson(Map<String, dynamic> json) {
+    return Temperature(current: (json['temp'] as num).toDouble() - 273.15);
   }
 }
 
