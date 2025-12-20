@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:weather_app/model/model.dart';
 
 class WeatherServices {
-  Future<WeatherData?> fetchWeather() async {
+  static Future<WeatherData?> fetchWeather() async {
     try {
       final response = await http.get(
         Uri.parse(
