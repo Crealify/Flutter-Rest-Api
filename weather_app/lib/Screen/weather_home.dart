@@ -97,7 +97,7 @@ class WeatherDetails extends StatelessWidget {
         Text(
           weather.name,
           style: TextStyle(
-            fontSize: .25,
+            fontSize: 26,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
