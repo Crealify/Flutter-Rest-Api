@@ -234,7 +234,7 @@ class WeatherDetails extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
 
                       children: [
-                        Icon(Icons.wind_power, color: Colors.amber),
+                        Icon(Icons.leaderboard, color: Colors.amber),
                         SizedBox(height: 5),
                         weatherInfoCard(
                           title: "Sea-Level",
