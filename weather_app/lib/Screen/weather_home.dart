@@ -20,7 +20,49 @@ class _WeatherHomeState extends State<WeatherHome> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    myWeather();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color(0xFF676BD0));
+    return Scaffold(
+      backgroundColor: Color(0xFF676BD0),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(children: [WeatherDetails(weather: weatherInfo)]),
+      ),
+    );
+  }
+}
+
+class WeatherDetails extends StatelessWidget {
+  final WeatherData weather;
+  const WeatherDetails({super.key, required this.weather});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        //for current address name
+        Text(
+          weather.name,
+          style: TextStyle(
+            fontSize: .25,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          "${weather.temperature.current.toStringAsFixed(2)}° C",
+          style: TextStyle(
+            fontSize: .25,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
   }
 }

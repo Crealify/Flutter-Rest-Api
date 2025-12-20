@@ -30,8 +30,8 @@ class WeatherData {
       temperature: Temperature.fromJson(json['main']),
       humidity: json['main']['humidity'],
       wind: Wind.fromJson(json['wind']),
-      maxTemperature: json['main']['temp_max'],
-      minTemperature: json['main']['temp_min'],
+      maxTemperature: json['main']['temp_max'] - 273.15, //kelvin to Celsius
+      minTemperature: json['main']['temp_min'] - 273.15, //kelvin to Celsius
       pressure: json['main']['pressure'],
       seaLevel: json['main']['seaLevel'],
       weather: List<WeatherInfo>.from(
@@ -54,8 +54,8 @@ class Temperature {
   final double current;
 
   Temperature({required this.current});
-  factory Temperature.fromJson(Map<String, dynamic> json) {
-    return Temperature(current: json['temp']);
+  factory Temperature.fromJson(dynamic json) {
+    return Temperature(current: (json - 273.15)); // Kelvin to Celsius
   }
 }
 
