@@ -139,6 +139,138 @@ class WeatherDetails extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        const SizedBox(height: 20),
+        Container(
+          height: 200,
+          width: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/cloudy.png")),
+          ),
+        ),
+        const SizedBox(height: 20),
+        Container(
+          height: 250,
+          decoration: BoxDecoration(
+            color: Colors.deepPurple,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      children: [
+                        Icon(Icons.wind_power, color: Colors.white),
+                        SizedBox(height: 5),
+                        weatherInfoCard(
+                          title: "Wind",
+                          value: '${weather.wind.speed} km/h',
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      children: [
+                        Icon(Icons.sunny, color: Colors.white),
+                        SizedBox(height: 5),
+                        weatherInfoCard(
+                          title: "Max",
+                          value:
+                              '${weather.maxTemperature.toStringAsFixed(2)}° C',
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      children: [
+                        Icon(Icons.wind_power, color: Colors.white),
+                        SizedBox(height: 5),
+                        weatherInfoCard(
+                          title: "Min",
+                          value:
+                              '${weather.maxTemperature.toStringAsFixed(2)}° C',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Divider(thickness: 4, color: Colors.white54),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      children: [
+                        Icon(Icons.water_drop, color: Colors.amber),
+                        SizedBox(height: 5),
+                        weatherInfoCard(
+                          title: "Humidity",
+                          value: '${weather.humidity}%',
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      children: [
+                        Icon(Icons.air, color: Colors.amber),
+                        SizedBox(height: 5),
+                        weatherInfoCard(
+                          title: "Pressure",
+                          value: '${weather.pressure}hPa',
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      children: [
+                        Icon(Icons.wind_power, color: Colors.amber),
+                        SizedBox(height: 5),
+                        weatherInfoCard(
+                          title: "Sea-Level",
+                          value: '${weather.seaLevel}m',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Column weatherInfoCard({required String title, required String value}) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        Text(
+          title,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ],
     );
   }
